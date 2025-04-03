@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Entity;
 
 use App\Repository\UserRepository;
@@ -22,8 +21,11 @@ class User
     #[ORM\Column(length: 255)]
     private ?string $role = null;
 
-    #[ORM\Column(length: 15)]
+    #[ORM\Column(length: 15, unique: true)]
     private ?string $phone_number = null;
+
+    #[ORM\Column(length: 6, nullable: true)]
+    private ?string $otp_code = null;
 
     public function getId(): ?int
     {
@@ -74,6 +76,18 @@ class User
     public function setPhoneNumber(string $phone_number): static
     {
         $this->phone_number = $phone_number;
+
+        return $this;
+    }
+
+    public function getOtpCode(): ?string
+    {
+        return $this->otp_code;
+    }
+
+    public function setOtpCode(?string $otp_code): static
+    {
+        $this->otp_code = $otp_code;
 
         return $this;
     }
