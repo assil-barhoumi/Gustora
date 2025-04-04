@@ -16,20 +16,18 @@ class UserType extends AbstractType
         $builder
             ->add('username', TextType::class)
             ->add('password', PasswordType::class)
-            ->add('role', TextType::class)
             ->add('phone_number', TextType::class)
             ->add('otp_code', TextType::class, [
                 'required' => false,
             ])
-            ->add('save', SubmitType::class, [
-                'label' => 'Save User'
-            ]);
+          ;
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
             'data_class' => User::class,
+            'csrf_protection' => false
         ]);
     }
 }

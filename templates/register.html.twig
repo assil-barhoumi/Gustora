@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <h1 class="mb-4">Create your account</h1>
+        
+        {{ form_start(form, {'attr': {'class': 'needs-validation', 'novalidate': 'novalidate'}}) }}
+            <div class="mb-3">
+                {{ form_label(form.username, 'Username', {'label_attr': {'class': 'form-label'}}) }}
+                {{ form_widget(form.username, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(form.username) }}
+            </div>
+            
+            <div class="mb-3">
+                {{ form_label(form.password, 'Password', {'label_attr': {'class': 'form-label'}}) }}
+                {{ form_widget(form.password, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(form.password) }}
+            </div>
+            
+            <div class="mb-3">
+                {{ form_label(form.phone_number, 'Phone Number', {'label_attr': {'class': 'form-label'}}) }}
+                {{ form_widget(form.phone_number, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(form.phone_number) }}
+            </div>
+            
+            <button type="submit" class="btn btn-primary">Register</button>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

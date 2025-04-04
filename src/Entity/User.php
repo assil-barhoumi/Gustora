@@ -1,11 +1,14 @@
 <?php
+
 namespace App\Entity;
 
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
-class User
+class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -26,7 +29,10 @@ class User
 
     #[ORM\Column(length: 6, nullable: true)]
     private ?string $otp_code = null;
-
+    public function __construct()
+    {
+        $this->role = 'CLIENT'; 
+    }
     public function getId(): ?int
     {
         return $this->id;
@@ -91,4 +97,18 @@ class User
 
         return $this;
     }
+
+    public function getRoles(): array
+    {
+         return [$this->role ?? 'ROLE_USER'];
+    }
+
+    public function getUserIdentifier(): string
+    {
+        return $this->username;
+    }
+
+    public function eraseCredentials(): void
+    {
+            }
 }
