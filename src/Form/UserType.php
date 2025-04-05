@@ -17,9 +17,7 @@ class UserType extends AbstractType
             ->add('username', TextType::class)
             ->add('password', PasswordType::class)
             ->add('phone_number', TextType::class)
-            ->add('otp_code', TextType::class, [
-                'required' => false,
-            ])
+           
           ;
     }
 
